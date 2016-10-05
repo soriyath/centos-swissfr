@@ -30,8 +30,7 @@ RUN wget http://hisham.hm/htop/releases/2.0.2/htop-2.0.2.tar.gz \
 RUN yum install -y python-setuptools \
 	&& easy_install pip \ 
 	&& pip install supervisor \
-	&& mkdir -p /etc/supervisor/conf.d \
-	&& mkdir -p /var/log/supervisor.log
+	&& mkdir -p /etc/supervisor/conf.d
 ADD supervisor.conf /etc/supervisor/supervisor.conf
 
 # Clean container
