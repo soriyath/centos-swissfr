@@ -32,7 +32,7 @@ RUN yum install -y python-setuptools \
 	&& pip install supervisor \
 	&& mkdir -p /etc/supervisor/conf.d \
 	&& mkdir -p /var/log/supervisor.log
-ADD supervisord.conf /etc/supervisord.conf
+ADD supervisor.conf /etc/supervisor/supervisor.conf
 
 # Clean container
 RUN yum -y clean all \
@@ -40,4 +40,4 @@ RUN yum -y clean all \
 	&& rm -rf ~/.cache/pip/*
 
 # default command
-CMD ["supervisord", "-c", "/etc/supervisor.conf"]
+CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf"]
