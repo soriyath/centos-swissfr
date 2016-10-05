@@ -3,7 +3,7 @@ MAINTAINER Sumi Straessle
 
 RUN yum upgrade -y \
 	&& yum install -y yum groupinstall "Development Tools" \
-	&& yum install -y git less vim curl wget unzip ncurses ncurses-devel gcc make man \
+	&& yum install -y git less vim curl wget unzip ncurses ncurses-devel gcc make \
 	&& yum -y -q reinstall glibc-common systemd
 
 RUN echo "fr_CH.UTF-8 UTF-8">/etc/locale.conf \
@@ -34,7 +34,10 @@ RUN yum install -y python-setuptools \
 	&& mkdir -p /var/log/supervisor.log
 ADD supervisord.conf /etc/supervisord.conf
 
-## TODO Add cleanup of container
+# Clean container
+RUN yum -y clean all \
+	&& yum autoremove \
+	&& rm -rf ~/.cache/pip/*
 
 # default command
 CMD ["supervisord", "-c", "/etc/supervisor.conf"]
