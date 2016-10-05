@@ -36,7 +36,7 @@ ADD supervisord.conf /etc/supervisord.conf
 
 # Clean container
 RUN yum -y clean all \
-	&& yum autoremove \
+	&& yum -y autoremove \
 	&& rm -rf ~/.cache/pip/*
 
 # default command
