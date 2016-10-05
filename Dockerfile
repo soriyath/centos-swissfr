@@ -6,9 +6,9 @@ RUN yum upgrade -y \
 	&& yum install -y git less vim curl wget unzip ncurses ncurses-devel gcc make man \
 	&& yum -y -q reinstall glibc-common systemd
 
-RUN echo "fr_CH.UTF-8 UTF-8">/etc/locale.conf
-
-RUN cp /usr/share/zoneinfo/Europe/Zurich /etc/localtime
+RUN echo "fr_CH.UTF-8 UTF-8">/etc/locale.conf \
+	&& rm /etc/localtime \
+	&& ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 
 # Set environment variables for locale
 ENV LANG fr_CH.UTF-8  
